@@ -21,6 +21,9 @@ public class Questionnaire {
 	@Column(name = "name")
 	private String name;
 
+	@Column(name = "describe_text")
+	private String describeText;
+
 	@Column(name = "start")
 	private LocalDate start;
 
@@ -32,19 +35,35 @@ public class Questionnaire {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Questionnaire(int id, String name, LocalDate start, LocalDate end) {
+	public Questionnaire(String name, String describeText, LocalDate start, LocalDate end) {
 		super();
-		this.id = id;
 		this.name = name;
+		this.describeText = describeText;
 		this.start = start;
 		this.end = end;
 	}
 
-	
+	public Questionnaire(int id, String name, String describeText, LocalDate start, LocalDate end) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.describeText = describeText;
+		this.start = start;
+		this.end = end;
+	}
+
 //	 * Get / Set
-	 
+
 	public int getId() {
 		return id;
+	}
+
+	public String getDescribeText() {
+		return describeText;
+	}
+
+	public void setDescribeText(String describeText) {
+		this.describeText = describeText;
 	}
 
 	public void setId(int id) {

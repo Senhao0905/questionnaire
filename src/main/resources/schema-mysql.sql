@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS `questionnaire` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
+  `describeText` VARCHAR(100) NOT NULL,
   `start` DATE NOT NULL,
   `end` DATE NOT NULL,
   PRIMARY KEY (`id`));
