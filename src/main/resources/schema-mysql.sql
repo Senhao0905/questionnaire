@@ -20,6 +20,6 @@ CREATE TABLE IF NOT EXISTS `questionnaire` (
   `name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `phone` VARCHAR(45) NOT NULL,
-  `age` VARCHAR(45) NOT NULL,
+  `age` INT NOT NULL,
   `answer` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`seq`));
