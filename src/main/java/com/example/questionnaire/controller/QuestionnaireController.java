@@ -37,9 +37,9 @@ public class QuestionnaireController {
 		return questionnaireService.updateQuestionnaire(request.getQuestionnaire());
 	}
 	
-	@GetMapping(value = "get_all_questioniare")
-	public SearchQuestionnaireResponse getAllQuestioniare() {
-		return questionnaireService.getAllQuestioniare();
+	@PostMapping(value = "get_all_questioniare")
+	public SearchQuestionnaireResponse getAllQuestioniare(@RequestBody QuestionnaireRequest request) {
+		return questionnaireService.getAllQuestioniare(request.getPageNumber());
 	}
 	
 	@PostMapping(value = "search_by_name_containing")

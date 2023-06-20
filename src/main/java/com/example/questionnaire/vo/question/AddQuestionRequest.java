@@ -10,7 +10,17 @@ public class AddQuestionRequest {
 	
 	private String type;
 	
+	private int seq ;
+	
 	private Map<String, String> answers;
+
+	public int getSeq() {
+		return seq;
+	}
+
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
 
 	public int getQuestionnaireId() {
 		return questionnaireId;

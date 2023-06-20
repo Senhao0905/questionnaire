@@ -14,7 +14,7 @@ public interface QuestionnaireService {
 
 	public QuestionnaireResponse updateQuestionnaire(Questionnaire questionnaire);
 	
-	public SearchQuestionnaireResponse getAllQuestioniare();
+	public SearchQuestionnaireResponse getAllQuestioniare(int pageNumber);
 	
 	public SearchQuestionnaireResponse searchByNameContaining(String name);
 	

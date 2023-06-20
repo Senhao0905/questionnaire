@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import com.example.questionnaire.constant.RtnCode;
 import com.example.questionnaire.entity.Questionnaire;
@@ -72,14 +76,31 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 	}
 
 	@Override
-	public SearchQuestionnaireResponse getAllQuestioniare() {
+	public SearchQuestionnaireResponse getAllQuestioniare(int pageNumber) {
+		// 判斷頁數是否超過
+		List<Questionnaire> total = questionnaireDao.findAll();
+		// 目前頁數（從 0 開始）
+		int pageSize = 2;  // 每頁顯示的項目數量
+		
+		int maxPage = (total.size() /  pageSize)+1 ;
+		
+		if(pageNumber > maxPage) {
+			return new SearchQuestionnaireResponse(RtnCode.ERROR.getMessage());
+		}
+		
+		Sort sort = Sort.by("id").ascending();  
 
-		List<Questionnaire> res = questionnaireDao.findAll();
+		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+
+		Page<Questionnaire> page = questionnaireDao.findAll(pageable);
+		
+		List<Questionnaire> res = page.getContent();
 
 		if (CollectionUtils.isEmpty(res)) {
 			return new SearchQuestionnaireResponse(RtnCode.NOT_FOUND.getMessage());
 		}
-		return new SearchQuestionnaireResponse(RtnCode.SUCCESSFUL.getMessage(), res);
+		
+		return new SearchQuestionnaireResponse(RtnCode.SUCCESSFUL.getMessage(), page);
 	}
 
 	@Override

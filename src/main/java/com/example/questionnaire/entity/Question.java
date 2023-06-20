@@ -35,6 +35,15 @@ public class Question {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Question(int seq, int questionnaireId, String name, String type, String answer) {
+		super();
+		this.seq = seq;
+		this.questionnaireId = questionnaireId;
+		this.name = name;
+		this.type = type;
+		this.answer = answer;
+	}
+
 	public Question(int questionnaireId, String name, String type, String answer) {
 		super();
 		this.questionnaireId = questionnaireId;

@@ -8,6 +8,16 @@ public class QuestionnaireRequest {
 	private Questionnaire questionnaire;
 	
 	private int id ;
+	
+	private int pageNumber;
+
+	public int getPageNumber() {
+		return pageNumber;
+	}
+
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
+	}
 
 	public int getId() {
 		return id;

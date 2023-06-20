@@ -4,29 +4,31 @@ import com.example.questionnaire.entity.Question;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AddQuestionResponse {
+public class DelQuestionResponse {
 
 	private String message;
-	
+
 	private Question question;
 
-	public AddQuestionResponse() {
+	public DelQuestionResponse() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public AddQuestionResponse(String message) {
+	public DelQuestionResponse(String message) {
 		super();
 		this.message = message;
 	}
 
-	public AddQuestionResponse(String message, Question question) {
+	public DelQuestionResponse(String message, Question question) {
 		super();
 		this.message = message;
 		this.question = question;
 	}
 
+	// --------------------------------------
 	public String getMessage() {
 		return message;
 	}
@@ -42,6 +44,5 @@ public class AddQuestionResponse {
 	public void setQuestion(Question question) {
 		this.question = question;
 	}
-	
-	
+
 }

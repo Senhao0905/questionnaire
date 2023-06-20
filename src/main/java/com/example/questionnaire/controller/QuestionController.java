@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.questionnaire.service.ifs.QuestionService;
 import com.example.questionnaire.vo.question.AddQuestionRequest;
 import com.example.questionnaire.vo.question.AddQuestionResponse;
+import com.example.questionnaire.vo.question.DelQuestionRequest;
+import com.example.questionnaire.vo.question.DelQuestionResponse;
 
 @RestController
 public class QuestionController {
@@ -21,6 +23,17 @@ public class QuestionController {
 	@PostMapping(value = "add_question")
 	public AddQuestionResponse addQuestion(@RequestBody AddQuestionRequest request) {
 		return questionService.addQuestion(request.getQuestionnaireId()
+				, request.getName(), request.getType(), request.getAnswers());
+	}
+	
+	@PostMapping(value = "dle_question")
+	public DelQuestionResponse delQuestion(@RequestBody DelQuestionRequest request) {
+		return questionService.delQuestion(request.getSeq());
+	}
+	
+	@PostMapping(value = "update_question")
+	public AddQuestionResponse updateQuestion(@RequestBody AddQuestionRequest request) {
+		return questionService.updateQuestion(request.getSeq(), request.getQuestionnaireId()
 				, request.getName(), request.getType(), request.getAnswers());
 	}
 }
