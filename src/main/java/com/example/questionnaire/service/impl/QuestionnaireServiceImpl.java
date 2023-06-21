@@ -82,13 +82,13 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 		// 目前頁數（從 0 開始）
 		int pageSize = 2;  // 每頁顯示的項目數量
 		
-		int maxPage = (total.size() /  pageSize)+1 ;
+		int maxPage = total.size() < pageSize ? 0 : (total.size()%pageSize==0) ? (total.size() / pageSize)-1  :total.size() / pageSize ;
 		
 		if(pageNumber > maxPage) {
 			return new SearchQuestionnaireResponse(RtnCode.ERROR.getMessage());
 		}
 		
-		Sort sort = Sort.by("id").ascending();  
+		Sort sort = Sort.by("id").descending();  
 
 		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
 
