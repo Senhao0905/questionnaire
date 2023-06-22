@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.example.questionnaire.vo.question.AddQuestionResponse;
 import com.example.questionnaire.vo.question.DelQuestionResponse;
+import com.example.questionnaire.vo.question.QuestionniareResponse;
 
 public interface QuestionService {
 	
@@ -17,4 +18,6 @@ public interface QuestionService {
 	
 	public AddQuestionResponse updateQuestion(int seq ,int questionnaireId
 			,String name ,String type , Map<String, String> answers);
+	
+	public QuestionniareResponse questionniareRes(int id );
 }
