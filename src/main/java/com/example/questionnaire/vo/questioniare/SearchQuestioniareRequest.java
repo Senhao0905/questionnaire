@@ -5,10 +5,20 @@ import java.time.LocalDate;
 public class SearchQuestioniareRequest {
 
 	private String name;
+	
+	private int pageNumber;
 
 	private LocalDate startDate;
 
 	private LocalDate endDate;
+
+	public int getPageNumber() {
+		return pageNumber;
+	}
+
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
+	}
 
 	public LocalDate getStartDate() {
 		return startDate;

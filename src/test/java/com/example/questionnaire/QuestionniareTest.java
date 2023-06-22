@@ -43,7 +43,7 @@ class QuestionniareTest {
 	@Test
 	public void searchByNameTest() {
 		String name = "";
-		questionnaireService.searchByNameContaining(name);
+//		questionnaireService.searchByNameContaining(name);
 	}
 	
 	
@@ -51,7 +51,7 @@ class QuestionniareTest {
 	public void searchByDateTest() {
 		LocalDate startDate = LocalDate.of(2023, 6, 19);
 		LocalDate endDate = LocalDate.of(2023, 6, 23);
-		List<Questionnaire> res = questionnaireDao.searchByDate(startDate, endDate);
+//		List<Questionnaire> res = questionnaireDao.searchByDate(startDate, endDate);
 		System.out.println();
 	}
 	

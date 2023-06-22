@@ -3,6 +3,8 @@ package com.example.questionnaire.repository;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,11 +16,12 @@ import com.example.questionnaire.entity.Questionnaire;
 public interface QuestionnaireDao extends JpaRepository<Questionnaire, Integer> {
 
 	
-	public List<Questionnaire> findByNameContaining(String name);
+	public Page<Questionnaire> findByNameContaining(String name ,Pageable pageable);
 	
 	
 	@Query(value = "SELECT * FROM questionnaire WHERE start >= :startDate and end <= :endDate",nativeQuery = true)
-	public List<Questionnaire> searchByDate(
+	public Page<Questionnaire> searchByDate(
 			@Param("startDate")LocalDate startDate,
-			@Param("endDate")LocalDate endDate);
+			@Param("endDate")LocalDate endDate,
+			Pageable pageable);
 }

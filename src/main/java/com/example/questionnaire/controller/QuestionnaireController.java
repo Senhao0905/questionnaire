@@ -47,11 +47,11 @@ public class QuestionnaireController {
 	
 	@PostMapping(value = "search_by_name_containing")
 	public SearchQuestionnaireResponse searchByNameContaining(@RequestBody SearchQuestioniareRequest request) {
-		return questionnaireService.searchByNameContaining(request.getName());
+		return questionnaireService.searchByNameContaining(request.getName(),request.getPageNumber());
 	}
 	
 	@PostMapping(value = "search_by_data")
 	public SearchQuestionnaireResponse searchByDate(@RequestBody SearchQuestioniareRequest request) {
-		return questionnaireService.searchByDate(request.getStartDate(), request.getEndDate());
+		return questionnaireService.searchByDate(request.getStartDate(), request.getEndDate(),request.getPageNumber());
 	}
 }

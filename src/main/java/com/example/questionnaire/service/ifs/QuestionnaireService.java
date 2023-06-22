@@ -16,8 +16,8 @@ public interface QuestionnaireService {
 	
 	public SearchQuestionnaireResponse getAllQuestioniare(int pageNumber);
 	
-	public SearchQuestionnaireResponse searchByNameContaining(String name);
+	public SearchQuestionnaireResponse searchByNameContaining(String name ,int pageNumber);
 	
-	public SearchQuestionnaireResponse searchByDate(LocalDate startDate , LocalDate endDate);
+	public SearchQuestionnaireResponse searchByDate(LocalDate startDate , LocalDate endDate,int pageNumber);
 		
 }

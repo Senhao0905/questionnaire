@@ -27,8 +27,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 
 	@Override
 	public QuestionnaireResponse addQuestionnaire(Questionnaire questionnaire) {
-		if (!StringUtils.hasText(questionnaire.getName())
-				|| !StringUtils.hasText(questionnaire.getDescribeText())) {
+		if (!StringUtils.hasText(questionnaire.getName()) || !StringUtils.hasText(questionnaire.getDescribeText())) {
 			return new QuestionnaireResponse(RtnCode.CANNOT_EMPTY.getMessage());
 		}
 
@@ -61,8 +60,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 		if (!res) {
 			return new QuestionnaireResponse(RtnCode.NOT_FOUND.getMessage());
 		}
-		if (!StringUtils.hasText(questionnaire.getName())
-				|| !StringUtils.hasText(questionnaire.getDescribeText())) {
+		if (!StringUtils.hasText(questionnaire.getName()) || !StringUtils.hasText(questionnaire.getDescribeText())) {
 			return new QuestionnaireResponse(RtnCode.CANNOT_EMPTY.getMessage());
 		}
 
@@ -80,39 +78,47 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 		// 判斷頁數是否超過
 		List<Questionnaire> total = questionnaireDao.findAll();
 		// 目前頁數（從 0 開始）
-		int pageSize = 2;  // 每頁顯示的項目數量
-		
-		int maxPage = total.size() < pageSize ? 0 : (total.size()%pageSize==0) ? (total.size() / pageSize)-1  :total.size() / pageSize ;
-		
-		if(pageNumber > maxPage) {
+		int pageSize = 10; // 每頁顯示的項目數量
+
+		int maxPage = total.size() < pageSize ? 0
+				: (total.size() % pageSize == 0) ? (total.size() / pageSize) - 1 : total.size() / pageSize;
+
+		if (pageNumber > maxPage) {
 			return new SearchQuestionnaireResponse(RtnCode.ERROR.getMessage());
 		}
-		
-		Sort sort = Sort.by("id").descending();  
+
+		Sort sort = Sort.by("id").descending();
 
 		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
 
 		Page<Questionnaire> page = questionnaireDao.findAll(pageable);
-		
+
 		List<Questionnaire> res = page.getContent();
 
 		if (CollectionUtils.isEmpty(res)) {
 			return new SearchQuestionnaireResponse(RtnCode.NOT_FOUND.getMessage());
 		}
-		
+
 		return new SearchQuestionnaireResponse(RtnCode.SUCCESSFUL.getMessage(), page);
 	}
 
 	@Override
-	public SearchQuestionnaireResponse searchByNameContaining(String name) {
+	public SearchQuestionnaireResponse searchByNameContaining(String name ,int pageNumber) {
 
 		if (!StringUtils.hasText(name)) {
 			return new SearchQuestionnaireResponse(RtnCode.CANNOT_EMPTY.getMessage());
 		}
 
-		List<Questionnaire> res = questionnaireDao.findByNameContaining(name);
 
-		if (CollectionUtils.isEmpty(res)) {
+		int pageSize = 10; // 每頁顯示的項目數量
+
+		Sort sort = Sort.by("id").descending();
+
+		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+		
+		Page<Questionnaire> res = questionnaireDao.findByNameContaining(name,pageable);
+
+		if (CollectionUtils.isEmpty(res.getContent())) {
 			return new SearchQuestionnaireResponse(RtnCode.NOT_FOUND.getMessage());
 		}
 
@@ -120,21 +126,27 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 	}
 
 	@Override
-	public SearchQuestionnaireResponse searchByDate(LocalDate startDate, LocalDate endDate) {
+	public SearchQuestionnaireResponse searchByDate(LocalDate startDate, LocalDate endDate , int pageNumber) {
 
 		LocalDate nowDate = LocalDate.now();
 
-		if (startDate.isBefore(nowDate) || startDate.isAfter(endDate)) {
+		if ( startDate.isAfter(endDate)) {
 			return new SearchQuestionnaireResponse(RtnCode.DATE_ERROR.getMessage());
 		}
+
+		int pageSize = 10; // 每頁顯示的項目數量
+
+		Sort sort = Sort.by("id").descending();
+
+		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
 		
-		List<Questionnaire> res = questionnaireDao.searchByDate(startDate, endDate);
-		
-		if(CollectionUtils.isEmpty(res)) {
+		Page<Questionnaire> res = questionnaireDao.searchByDate(startDate, endDate,pageable);
+
+		if (CollectionUtils.isEmpty(res.getContent())) {
 			return new SearchQuestionnaireResponse(RtnCode.NOT_FOUND.getMessage());
 		}
-		
-		return new SearchQuestionnaireResponse(RtnCode.SUCCESSFUL.getMessage(),res);
+
+		return new SearchQuestionnaireResponse(RtnCode.SUCCESSFUL.getMessage(), res);
 	}
 
 }
