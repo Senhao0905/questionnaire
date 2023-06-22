@@ -1,6 +1,7 @@
 package com.example.questionnaire.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import com.example.questionnaire.vo.record.AddRecordRequest;
 import com.example.questionnaire.vo.record.AddRecordResponse;
 import com.example.questionnaire.vo.record.GetAllRecordResponse;
 
+@CrossOrigin
 @RestController
 public class RecordController {
 
