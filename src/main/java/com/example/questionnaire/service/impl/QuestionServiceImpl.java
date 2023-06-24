@@ -130,15 +130,13 @@ public class QuestionServiceImpl implements QuestionService {
 		List<Question> res = questionDao.findByQuestionnaireId(id);
 		
 		Map<Integer,Map<String,Map<String, Map<String, String>>>> realMap= new TreeMap<>();
-		int index = 1 ;
 		for(Question item : res) {
 			Map<String, Map<String, String>> resMap = new TreeMap<>();
 			Map<String,Map<String, Map<String, String>>> finalMap = new TreeMap<>();
 			Map<String, String> toMap = stringToMap(item.getAnswer());
 			resMap.put(item.getType(),toMap);
 			finalMap.put(item.getName(), resMap);
-			realMap.put(index, finalMap);
-			index++;
+			realMap.put(item.getSeq(), finalMap);
 		}
 		
 
