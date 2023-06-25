@@ -29,7 +29,7 @@ public class QuestionController {
 				, request.getName(), request.getType(), request.getAnswers());
 	}
 	
-	@PostMapping(value = "dle_question")
+	@PostMapping(value = "del_question")
 	public DelQuestionResponse delQuestion(@RequestBody DelQuestionRequest request) {
 		return questionService.delQuestion(request.getSeq());
 	}
