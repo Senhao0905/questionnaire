@@ -12,7 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import com.example.questionnaire.constant.RtnCode;
@@ -29,6 +29,7 @@ import com.example.questionnaire.vo.question.DelQuestionResponse;
 import com.example.questionnaire.vo.questioniare.SearchQuestionnaireResponse;
 import com.example.questionnaire.vo.record.AddRecordResponse;
 import com.example.questionnaire.vo.record.GetAllRecordResponse;
+import com.example.questionnaire.vo.record.GetRecordResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -107,6 +108,17 @@ public class RecordServiceImpl implements RecordService {
 		
 		return new GetAllRecordResponse(RtnCode.SUCCESSFUL.getMessage(), page);
 	}
+	
+	@Override
+	public GetRecordResponse getRecord(int id) {
+		
+		List<Record> res = recordDao.findAllByQuestionnaireId(id);
+		
+		if(CollectionUtils.isEmpty(res)) {
+			return new GetRecordResponse(RtnCode.NOT_FOUND.getMessage());
+		}
+		return new GetRecordResponse(RtnCode.SUCCESSFUL.getMessage(),res);
+	}
 
 //	©â¤èªk 
 	private String mapToString(Map<String, String> answers) {
@@ -124,5 +136,7 @@ public class RecordServiceImpl implements RecordService {
 
 		return answersStr;
 	}
+
+	
 
 }

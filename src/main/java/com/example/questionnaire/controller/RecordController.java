@@ -10,6 +10,7 @@ import com.example.questionnaire.service.ifs.RecordService;
 import com.example.questionnaire.vo.record.AddRecordRequest;
 import com.example.questionnaire.vo.record.AddRecordResponse;
 import com.example.questionnaire.vo.record.GetAllRecordResponse;
+import com.example.questionnaire.vo.record.GetRecordResponse;
 
 @CrossOrigin
 @RestController
@@ -26,6 +27,11 @@ public class RecordController {
 	@PostMapping(value = "get_all_record")
 	public GetAllRecordResponse getAllRecord(@RequestBody AddRecordRequest request) {
 		return recordService.getAllRecord(request.getPageNumber());
+	}
+	
+	@PostMapping(value = "get_record")
+	public GetRecordResponse getRecord(@RequestBody AddRecordRequest request) {
+		return recordService.getRecord(request.getId());
 	}
 
 }

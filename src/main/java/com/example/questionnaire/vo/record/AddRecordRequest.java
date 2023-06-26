@@ -12,6 +12,17 @@ public class AddRecordRequest {
 	private Map<String, String> answers ;
 	
 	private int pageNumber ;
+	
+	private int id ;
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getPageNumber() {
 		return pageNumber;
