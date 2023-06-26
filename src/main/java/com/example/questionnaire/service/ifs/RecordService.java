@@ -1,5 +1,6 @@
 package com.example.questionnaire.service.ifs;
 
+import java.util.List;
 import java.util.Map;
 
 import com.example.questionnaire.entity.Record;
@@ -10,7 +11,7 @@ import com.example.questionnaire.vo.record.GetRecordResponse;
 public interface RecordService {
 	
 	
-	public AddRecordResponse addRecord(Record record,Map<String , String> answers);
+	public AddRecordResponse addRecord(Record record,Map<String , List<String>> answers);
 	
 	public GetAllRecordResponse getAllRecord(int pageNumber);
 	

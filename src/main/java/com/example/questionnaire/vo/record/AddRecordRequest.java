@@ -1,5 +1,6 @@
 package com.example.questionnaire.vo.record;
 
+import java.util.List;
 import java.util.Map;
 
 import com.example.questionnaire.entity.Record;
@@ -9,12 +10,20 @@ public class AddRecordRequest {
 	
 	private Record record ;
 	
-	private Map<String, String> answers ;
+	private Map<String,  List<String>> answers ;
 	
 	private int pageNumber ;
 	
 	private int id ;
 	
+
+	public Map<String, List<String>> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(Map<String, List<String>> answers) {
+		this.answers = answers;
+	}
 
 	public int getId() {
 		return id;
@@ -40,13 +49,7 @@ public class AddRecordRequest {
 		this.record = record;
 	}
 
-	public Map<String, String> getAnswers() {
-		return answers;
-	}
-
-	public void setAnswers(Map<String, String> answers) {
-		this.answers = answers;
-	}
+	
 
 	
 	

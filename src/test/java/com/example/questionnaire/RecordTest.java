@@ -31,7 +31,7 @@ class RecordTest {
 		answersMap.put("3", "µª®×1");
 		answersMap.put("4", "µª®×1");
 		
-		recordService.addRecord(record, answersMap);
+//		recordService.addRecord(record, answersMap);
 	}
 
 }

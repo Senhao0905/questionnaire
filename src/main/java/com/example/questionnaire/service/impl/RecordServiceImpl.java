@@ -43,7 +43,7 @@ public class RecordServiceImpl implements RecordService {
 	private QuestionnaireDao questionnaireDao;
 
 	@Override
-	public AddRecordResponse addRecord(Record record, Map<String, String> answers) {
+	public AddRecordResponse addRecord(Record record, Map<String,  List<String>> answers) {
 
 		boolean res = questionnaireDao.existsById(record.getQuestionnaireId());
 
@@ -67,12 +67,12 @@ public class RecordServiceImpl implements RecordService {
 			return new AddRecordResponse(RtnCode.DATA_ERROR.getMessage());
 		}
 
-		for (Entry<String, String> item : answers.entrySet()) {
+		for (Entry<String,  List<String>> item : answers.entrySet()) {
 			if (!StringUtils.hasText(item.getKey())) {
 				return new AddRecordResponse(RtnCode.CANNOT_EMPTY.getMessage());
 			}
 
-			if (!StringUtils.hasText(item.getValue())) {
+			if (CollectionUtils.isEmpty(item.getValue())) {
 				return new AddRecordResponse(RtnCode.CANNOT_EMPTY.getMessage());
 			}
 		}
@@ -121,7 +121,7 @@ public class RecordServiceImpl implements RecordService {
 	}
 
 //	©â¤èªk 
-	private String mapToString(Map<String, String> answers) {
+	private String mapToString(Map<String,  List<String>> answers) {
 
 		// change map to string
 		ObjectMapper mapper = new ObjectMapper();

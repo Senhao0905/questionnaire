@@ -1,5 +1,7 @@
 package com.example.questionnaire.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,6 +36,9 @@ public class Record {
 	@Column(name = "answer")
 	private String answer;
 
+	@Column(name = "date")
+	private LocalDateTime localDateTime = LocalDateTime.now();
+
 	public Record() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -49,6 +54,19 @@ public class Record {
 		this.answer = answer;
 	}
 
+	public Record(int seq, int questionnaireId, String name, String email, String phone, int age, String answer,
+			LocalDateTime localDateTime) {
+		super();
+		this.seq = seq;
+		this.questionnaireId = questionnaireId;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.age = age;
+		this.answer = answer;
+		this.localDateTime = localDateTime;
+	}
+
 	public Record(int seq, int questionnaireId, String name, String email, String phone, int age, String answer) {
 		super();
 		this.seq = seq;
@@ -61,8 +79,17 @@ public class Record {
 	}
 
 	// ---------------------------------------
+	
 	public int getSeq() {
 		return seq;
+	}
+
+	public LocalDateTime getLocalDateTime() {
+		return localDateTime;
+	}
+
+	public void setLocalDateTime(LocalDateTime localDateTime) {
+		this.localDateTime = localDateTime;
 	}
 
 	public void setSeq(int seq) {
