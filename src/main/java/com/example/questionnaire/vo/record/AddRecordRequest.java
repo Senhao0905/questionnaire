@@ -15,7 +15,16 @@ public class AddRecordRequest {
 	private int pageNumber ;
 	
 	private int id ;
-	
+		
+	private int seq ;
+
+	public int getSeq() {
+		return seq;
+	}
+
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
 
 	public Map<String, List<String>> getAnswers() {
 		return answers;

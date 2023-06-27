@@ -6,6 +6,7 @@ import java.util.Map;
 import com.example.questionnaire.entity.Record;
 import com.example.questionnaire.vo.record.AddRecordResponse;
 import com.example.questionnaire.vo.record.GetAllRecordResponse;
+import com.example.questionnaire.vo.record.GetRecordCountResponse;
 import com.example.questionnaire.vo.record.GetRecordResponse;
 
 public interface RecordService {
@@ -16,4 +17,8 @@ public interface RecordService {
 	public GetAllRecordResponse getAllRecord(int pageNumber);
 	
 	public GetRecordResponse getRecord(int id);
+	
+	public GetRecordResponse getRecordInfo(int seq);
+	
+	public GetRecordCountResponse getRecordCount(int seq);
 }

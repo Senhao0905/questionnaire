@@ -34,4 +34,9 @@ class RecordTest {
 //		recordService.addRecord(record, answersMap);
 	}
 
+	
+	@Test
+	public void recordTest() {
+		recordService.getRecordCount(19);
+	}
 }
