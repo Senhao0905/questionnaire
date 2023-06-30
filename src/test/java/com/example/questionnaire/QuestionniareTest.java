@@ -43,7 +43,9 @@ class QuestionniareTest {
 	@Test
 	public void searchByNameTest() {
 		String name = "";
-//		questionnaireService.searchByNameContaining(name);
+		LocalDate start = LocalDate.of(2023, 6, 30);
+		LocalDate end = LocalDate.of(2023, 7, 02);
+		questionnaireService.searchByDateOrName(name,start,end,0);
 	}
 	
 	

@@ -20,4 +20,5 @@ public interface QuestionnaireService {
 	
 	public SearchQuestionnaireResponse searchByDate(LocalDate startDate , LocalDate endDate,int pageNumber);
 		
+	public SearchQuestionnaireResponse searchByDateOrName(String name,LocalDate startDate , LocalDate endDate,int pageNumber);
 }

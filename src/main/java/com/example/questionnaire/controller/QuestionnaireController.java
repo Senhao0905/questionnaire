@@ -54,4 +54,9 @@ public class QuestionnaireController {
 	public SearchQuestionnaireResponse searchByDate(@RequestBody SearchQuestioniareRequest request) {
 		return questionnaireService.searchByDate(request.getStartDate(), request.getEndDate(),request.getPageNumber());
 	}
+	
+	@PostMapping(value = "search_by_date_name")
+	public SearchQuestionnaireResponse searchByDateOrName(@RequestBody SearchQuestioniareRequest request) {
+		return questionnaireService.searchByDateOrName(request.getName(), request.getStartDate(), request.getEndDate(), request.getPageNumber());
+	}
 }

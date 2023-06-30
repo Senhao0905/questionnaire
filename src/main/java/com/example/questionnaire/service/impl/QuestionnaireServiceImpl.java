@@ -149,4 +149,33 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 		return new SearchQuestionnaireResponse(RtnCode.SUCCESSFUL.getMessage(), res);
 	}
 
+	@Override
+	public SearchQuestionnaireResponse searchByDateOrName(String name, LocalDate startDate, LocalDate endDate,
+			int pageNumber) {
+		
+		String newName = StringUtils.hasText(name) ? name : "";
+		
+		LocalDate newStart = startDate != null ? startDate : LocalDate.of(1900, 6, 30);
+		
+		LocalDate newEnd = endDate != null ? endDate : LocalDate.of(2100, 6, 30);
+		
+		if (newStart.isAfter(newEnd)) {
+			return new SearchQuestionnaireResponse(RtnCode.DATE_ERROR.getMessage());
+		}
+
+		int pageSize = 10; // 每頁顯示的項目數量
+
+		Sort sort = Sort.by("id").descending();
+
+		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+		
+		Page<Questionnaire> res = questionnaireDao.searchByDateOrName(newName,newStart,newEnd,pageable);
+
+		if (CollectionUtils.isEmpty(res.getContent())) {
+			return new SearchQuestionnaireResponse(RtnCode.NOT_FOUND.getMessage());
+		}
+		
+		return new SearchQuestionnaireResponse(RtnCode.SUCCESSFUL.getMessage(), res);
+	}
+
 }

@@ -24,4 +24,12 @@ public interface QuestionnaireDao extends JpaRepository<Questionnaire, Integer> 
 			@Param("startDate")LocalDate startDate,
 			@Param("endDate")LocalDate endDate,
 			Pageable pageable);
+	
+	@Query(value = "select * from questionnaire where name LIKE CONCAT('%',:newName,'%') "
+			+ "and (start >= :stratDate and end <= :endDate)",nativeQuery = true)
+	public Page<Questionnaire> searchByDateOrName(
+			@Param("newName")String newName ,
+			@Param("stratDate")LocalDate startDate,
+			@Param("endDate")LocalDate endDate,
+			Pageable pageable);
 }
