@@ -1,5 +1,7 @@
 package com.example.questionnaire;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -25,13 +27,17 @@ class RecordTest {
 	public void addRecordTest() {
 
 		Record record = new Record(5, "陳勝和", "udn880905", "0986295838", 24, null);
-		Map<String, String> answersMap = new TreeMap<>();
-		answersMap.put("1", "答案1");
-		answersMap.put("2", "答案1");
-		answersMap.put("3", "答案1");
-		answersMap.put("4", "答案1");
+		Map<String, List<String>> answersMap = new TreeMap<>();
+		List<String> answerList = new ArrayList<>();
+		List<String> noneList = new ArrayList<>();
+		answerList.add("1");
+		noneList.add("");
+		answersMap.put("1", answerList);
+		answersMap.put("2", answerList);
+		answersMap.put("3", noneList);
+		answersMap.put("4", answerList);
 		
-//		recordService.addRecord(record, answersMap);
+		recordService.addRecord(record, answersMap);
 	}
 
 	
