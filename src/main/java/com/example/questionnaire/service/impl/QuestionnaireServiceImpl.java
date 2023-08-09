@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,7 @@ import com.example.questionnaire.service.ifs.QuestionnaireService;
 import com.example.questionnaire.vo.questioniare.QuestionnaireResponse;
 import com.example.questionnaire.vo.questioniare.SearchQuestionnaireResponse;
 
+@CrossOrigin
 @Service
 public class QuestionnaireServiceImpl implements QuestionnaireService {
 
