@@ -40,6 +40,7 @@ public class QuestionnaireController {
 		return questionnaireService.updateQuestionnaire(request.getQuestionnaire());
 	}
 	
+	@CrossOrigin
 	@PostMapping(value = "get_all_questioniare")
 	public SearchQuestionnaireResponse getAllQuestioniare(@RequestBody QuestionnaireRequest request) {
 		return questionnaireService.getAllQuestioniare(request.getPageNumber());
