@@ -20,10 +20,6 @@ class QuestionniareTest {
 	
 	
 	
-	@Test
-	public void addQuestionniareTest() {
-		
-	}
 	
 	
 
